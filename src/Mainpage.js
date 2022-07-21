@@ -1,4 +1,8 @@
-import {InvoiceCardMain} from './Invoice-card-main'
+import React from 'react'
+
+import {MainPageHeader} from './MainPageHeader'
+import {MainInvoiceCard} from './MainInvoiceCard'
+import {MainInvoiceContainer} from './MainInvoiceContainer'
 
 
 function MainPage (props) {
@@ -18,14 +22,17 @@ function MainPage (props) {
     }
 
     const mapInvoices = props.invoiceList.map(currentInv => {
-        return <InvoiceCardMain items={currentInv} />
+        return <MainInvoiceCard items={currentInv} />
     })
     
     return (
         <main>
-            <h1>Invoices</h1>
+            <MainPageHeader
+                setMainSectionToggle = {props.setMainSectionToggle}
+                setFormSectionToggle = {props.setFormSectionToggle}
+            />
             <button onClick={testButton}>Click for Invoice!</button>
-            {mapInvoices}
+            <MainInvoiceContainer mapInvoices ={mapInvoices} />
         </main>
     )
 }
