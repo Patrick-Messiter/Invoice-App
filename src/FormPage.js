@@ -1,11 +1,18 @@
 import React from 'react'
 
 import {generateRandomId} from './GlobalFunctions'
+import {FormItem} from './FormItem'
 
 function FormPage (props) {
     const [formData, setFormData] = React.useState(
         {id: generateRandomId()}
     )
+
+    //State for handling addition or subtraction of items in form
+    const [itemList, setItemList] = React.useState([])
+
+
+    console.log(itemList)
 
     function toggleMain () {
         props.setFormSectionToggle(false)
@@ -23,6 +30,12 @@ function FormPage (props) {
 
     function handleSubmit(event) {
         event.preventDefault()
+        setFormData(prevData => {
+            return {
+                ...prevData,
+                items: itemList
+            }
+        })
         props.setInvoiceList(prevList => {
             return [
                 ...prevList,
@@ -30,6 +43,56 @@ function FormPage (props) {
             ]
         })
     }
+
+    // Section for handling item components in form
+
+    function addFormItem (event) {
+        event.preventDefault()
+        setItemList(prevList => {
+            return (
+                [...prevList,
+                    {
+                        id: generateRandomId(),
+                        [event.target.name]: event.target.value
+                    }
+                ]
+            )
+        })
+    }
+
+    function alterItem (id, event) {
+        setItemList(prevList => {
+            return prevList.map(currentItem => {
+                if (currentItem.id === id) {
+                    return {
+                        ...currentItem,
+                        [event.target.name]: event.target.value
+                    }
+                }
+                else {
+                    return {...currentItem}
+                }
+            })
+        })
+    }
+
+    function deleteItem (id) {
+        setItemList(prevList => {
+            return prevList.filter(currentItem => currentItem.id !== id)
+        })
+    }
+
+    const mappedItems = itemList.map((currentItem) => {
+        return (
+            <FormItem
+                item = {currentItem}
+                id = {currentItem.id}
+                key = {currentItem.id}
+                alterItem = {(event) => alterItem(currentItem.id, event)}
+                deleteItem = {() => deleteItem(currentItem.id)} 
+            />
+        )
+    })
 
     return (
         <div>
@@ -148,6 +211,15 @@ function FormPage (props) {
                         value={formData.project}
                     />
                 </label>
+                <div>
+                    <h4>Item List</h4>
+                    <label>Item Name</label>
+                    <label>Qty.</label>
+                    <label>Price</label>
+                    <label>Total</label>
+                    {mappedItems}
+                    <button type='button' onClick={addFormItem}>Add New Item</button>
+                </div>
                 {
                     //WORK ON ITEM LIST COMPONENT TO ADD IT HERE
                 }
