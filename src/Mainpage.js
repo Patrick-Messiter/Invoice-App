@@ -1,29 +1,11 @@
 import React from 'react'
 
 import {MainPageHeader} from './MainPageHeader'
-import {MainInvoiceCard} from './MainInvoiceCard'
-import {MainInvoiceContainer} from './MainInvoiceContainer'
+import {MainPageInvoiceContainer} from './MainPageInvoiceContainer'
 
 
 function MainPage (props) {
     
-    function testButton () {
-        props.setInvoiceList(prevState => {
-            return (
-                [...prevState, 
-                {
-                    id: "#VZ8465",
-                    username: "Delilah Ridings",
-                    value: 312,
-                    status: "pending",
-                }]
-            )
-        })
-    }
-
-    const mapInvoices = props.invoiceList.map(currentInv => {
-        return <MainInvoiceCard items={currentInv} />
-    })
     
     return (
         <main>
@@ -31,8 +13,12 @@ function MainPage (props) {
                 setMainSectionToggle = {props.setMainSectionToggle}
                 setFormSectionToggle = {props.setFormSectionToggle}
             />
-            <button onClick={testButton}>Click for Invoice!</button>
-            <MainInvoiceContainer mapInvoices ={mapInvoices} />
+            <MainPageInvoiceContainer 
+                setMainSectionToggle = {props.setMainSectionToggle}
+                setInvoiceSectionToggle = {props.setInvoiceSectionToggle}
+                invoiceList = {props.invoiceList}
+                setSelectedInvoice = {props.setSelectedInvoice}
+            />
         </main>
     )
 }

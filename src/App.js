@@ -1,12 +1,21 @@
-import React from 'react'
+import React from 'react';
 
 import './App.css';
 import {Navbar} from './Navbar';
 import {MainPage} from './Mainpage';
 import {FormPage} from './FormPage';
+import {InvoicePage} from './InvoicePage';
 
 function App() {
   const [invoiceList, setInvoiceList] = React.useState([])
+  const [selectedInvoice, setSelectedInvoice] = React.useState()
+
+  console.log(invoiceList)
+
+  /*
+  React.useEffect(()=> {
+    console.log(selectedInvoice)
+  }, [selectedInvoice])*/
 
   // Toggle states for different major sections of the app
   const [mainSectionToggle, setMainSectionToggle] = React.useState(true)
@@ -20,6 +29,7 @@ function App() {
       <MainPage 
         invoiceList = {invoiceList}
         setInvoiceList = {setInvoiceList}
+        setSelectedInvoice = {setSelectedInvoice}
         setMainSectionToggle = {setMainSectionToggle}
         setFormSectionToggle = {setFormSectionToggle}
         setInvoiceSectionToggle = {setInvoiceSectionToggle}
@@ -32,6 +42,15 @@ function App() {
         setInvoiceSectionToggle = {setInvoiceSectionToggle}
       />
       }
+      {invoiceSectionToggle && 
+      <InvoicePage
+        invoiceList = {invoiceList}
+        invoice = {selectedInvoice}
+        setSelectedInvoice = {setSelectedInvoice}
+        setInvoiceSectionToggle = {setInvoiceSectionToggle}
+        setMainSectionToggle = {setMainSectionToggle}
+        setFormSectionToggle = {setFormSectionToggle}
+      />}
     </div>
   );
 }

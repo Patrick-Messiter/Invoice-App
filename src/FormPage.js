@@ -11,9 +11,6 @@ function FormPage (props) {
     //State for handling addition or subtraction of items in form
     const [itemList, setItemList] = React.useState([])
 
-
-    console.log(itemList)
-
     function toggleMain () {
         props.setFormSectionToggle(false)
         props.setMainSectionToggle(true)
@@ -28,14 +25,17 @@ function FormPage (props) {
         })
     }
 
-    function handleSubmit(event) {
-        event.preventDefault()
+    React.useEffect(()=> {
         setFormData(prevData => {
             return {
                 ...prevData,
                 items: itemList
             }
         })
+    }, [itemList])
+
+    function handleSubmit(event) {
+        event.preventDefault()
         props.setInvoiceList(prevList => {
             return [
                 ...prevList,
@@ -173,7 +173,7 @@ function FormPage (props) {
                     />
                 </label>
                 <label>
-                    Street Address
+                    Post Code
                     <input 
                         type="text"
                         onChange={handleChange}
@@ -182,7 +182,7 @@ function FormPage (props) {
                     />
                 </label>
                 <label>
-                    Street Address
+                    Country
                     <input 
                         type="text"
                         onChange={handleChange}

@@ -1,6 +1,6 @@
-function MainInvoiceCard (props) {
+function MainPageInvoiceCard (props) {
     return (
-        <div>
+        <div onClick = {props.toggleToSelectedInvoice}>
             <h2>#{props.items.id}</h2>
             <h3>{props.items.username}</h3>
             <h4>${props.items.value}</h4>
@@ -10,4 +10,4 @@ function MainInvoiceCard (props) {
     )
 }
 
-export {MainInvoiceCard}
+export {MainPageInvoiceCard}
