@@ -1,12 +1,21 @@
 import React from 'react'
 
-import {generateRandomId} from './GlobalFunctions'
+import {generateRandomId, generateCurrentDate} from './GlobalFunctions'
+import { Calendar } from './Calendar'
 import {FormItem} from './FormItem'
+import { CustomSelect } from './CustomSelect'
+
 
 function FormPage (props) {
     const [formData, setFormData] = React.useState(
         {id: generateRandomId()}
     )
+
+    //State for Payment Option custom select
+    const [paymentTerms, setPaymentTerms] = React.useState()
+
+    //State for Invoice Date component
+    const [invoiceDate, setInvoiceDate] = React.useState(generateCurrentDate())
 
     //State for handling addition or subtraction of items in form
     const [itemList, setItemList] = React.useState([])
@@ -29,11 +38,14 @@ function FormPage (props) {
         setFormData(prevData => {
             return {
                 ...prevData,
-                items: itemList
+                items: itemList,
+                paymentTerms: paymentTerms,
+                invoiceDate: invoiceDate
             }
         })
-    }, [itemList])
+    }, [itemList, paymentTerms, invoiceDate])
 
+    
     function handleSubmit(event) {
         event.preventDefault()
         props.setInvoiceList(prevList => {
@@ -42,6 +54,7 @@ function FormPage (props) {
                 formData
             ]
         })
+        toggleMain()
     }
 
     // Section for handling item components in form
@@ -192,15 +205,19 @@ function FormPage (props) {
                 </label>
                 <label>
                     Invoice Date
-                    {
-                    //WORK FURTHER ON THIS add calendar think it would be custom select
-                    }
+                    <Calendar 
+                        invoiceDate = {invoiceDate}
+                        setInvoiceDate = {setInvoiceDate}
+                    />
                 </label>
                 <label>
                     Payment Terms
-                    {
-                        //WORK FURTHER ON THIS custom select option
-                    }
+                    <CustomSelect 
+                        itemList = {["Net 7 days", "Net 14 days", "Net 30 days", "Net 90 days"]}
+                        selectedOption = {paymentTerms}
+                        setSelectedOption = {setPaymentTerms}
+                        default = {"Select an option"}
+                    />
                 </label>
                 <label>
                     Project Description
@@ -220,9 +237,6 @@ function FormPage (props) {
                     {mappedItems}
                     <button type='button' onClick={addFormItem}>Add New Item</button>
                 </div>
-                {
-                    //WORK ON ITEM LIST COMPONENT TO ADD IT HERE
-                }
                 <button>Complete</button>
             </form>
             <button onClick={toggleMain}>Cancel</button>

@@ -11,7 +11,7 @@ function MainPageHeader (props) {
     return (
         <header>
             <h1>Invoices</h1>
-            <CustomSelect />
+            <CustomSelect itemList = {[]} />
             <button onClick={toggleForm}>New Invoice</button>
         </header>
     )
