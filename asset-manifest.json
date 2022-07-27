@@ -1,12 +1,13 @@
 {
   "files": {
-    "main.css": "/Invoice-App/static/css/main.31d6cfe0.css",
-    "main.js": "/Invoice-App/static/js/main.5282639c.js",
+    "main.css": "/Invoice-App/static/css/main.efc9f691.css",
+    "main.js": "/Invoice-App/static/js/main.644aae51.js",
     "index.html": "/Invoice-App/index.html",
-    "main.5282639c.js.map": "/Invoice-App/static/js/main.5282639c.js.map"
+    "main.efc9f691.css.map": "/Invoice-App/static/css/main.efc9f691.css.map",
+    "main.644aae51.js.map": "/Invoice-App/static/js/main.644aae51.js.map"
   },
   "entrypoints": [
-    "static/css/main.31d6cfe0.css",
-    "static/js/main.5282639c.js"
+    "static/css/main.efc9f691.css",
+    "static/js/main.644aae51.js"
   ]
 }
