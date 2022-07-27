@@ -9,8 +9,11 @@ function MainPageHeader (props) {
     }
 
     return (
-        <header>
-            <h1>Invoices</h1>
+        <header className='MainPage-Header-Container'>
+            <div>
+                <h1>Invoices</h1>
+                <p>There are currently {props.invoiceList.length} invoices</p>
+            </div>
             <CustomSelect itemList = {[]} />
             <button onClick={toggleForm}>New Invoice</button>
         </header>

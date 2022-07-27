@@ -17,11 +17,18 @@ function MainPageInvoiceContainer (props) {
     }
 
     const mapInvoices = props.invoiceList.map(currentInv => {
-        return <MainPageInvoiceCard items={currentInv} key={currentInv.id} toggleToSelectedInvoice={() => toggleToSelectedInvoice(currentInv.id)} />
+        return (
+            <MainPageInvoiceCard 
+                invoice={currentInv} 
+                key={currentInv.id} 
+                toggleDarkMode={props.toggleDarkMode}
+                toggleToSelectedInvoice={() => toggleToSelectedInvoice(currentInv.id)}
+            />
+        )
     })
 
     return (
-        <div>
+        <div className='MainPage-Invoice-Container'>
             {mapInvoices}
         </div>
     )

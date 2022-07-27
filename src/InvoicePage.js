@@ -13,14 +13,6 @@ function InvoicePage (props) {
         return <InvoicePageItemCard key={currentItem.id} item = {currentItem}/>
     })
 
-    function invoiceTotal () {
-        let total = 0;
-        props.invoice.items.map(currentItem => {
-            total += Number(currentItem.itemQty) * Number(currentItem.itemPrice)
-        })
-        return total
-    }
-
     return (
         <section>
             <button onClick={toggleMain}>Go back</button>
@@ -67,7 +59,7 @@ function InvoicePage (props) {
                     </div>
                     <div className='InvoicePage-InvoiceTotal'>
                         <p>Billings:</p>
-                        <h3>{invoiceTotal()}</h3>
+                        <h3>{props.invoice.paymentTotal}</h3>
                     </div>
                 </div>
             </div>

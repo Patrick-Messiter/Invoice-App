@@ -1,11 +1,11 @@
 function MainPageInvoiceCard (props) {
     return (
-        <div onClick = {props.toggleToSelectedInvoice}>
-            <h2>#{props.items.id}</h2>
-            <h3>{props.items.username}</h3>
-            <h4>${props.items.value}</h4>
-            <p>Status: {props.items.status}</p>
-            <p>{props.items.address}, {props.items.city}</p>
+        <div className={"MainPage-Invoice-Card glassMinor"} onClick = {props.toggleToSelectedInvoice}>
+            <h2>#{props.invoice.id}</h2>
+            <p>Due {`${props.invoice.invoiceDate.day} ${props.invoice.invoiceDate.monthName} ${props.invoice.invoiceDate.year}`} </p>
+            <p>{props.invoice.toName}</p>
+            <h3>${props.invoice.paymentTotal}</h3>
+            <p>Status: {props.invoice.status}</p>
         </div>
     )
 }

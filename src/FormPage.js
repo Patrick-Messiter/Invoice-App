@@ -20,6 +20,9 @@ function FormPage (props) {
     //State for handling addition or subtraction of items in form
     const [itemList, setItemList] = React.useState([])
 
+
+    console.log(formData)
+
     function toggleMain () {
         props.setFormSectionToggle(false)
         props.setMainSectionToggle(true)
@@ -39,12 +42,22 @@ function FormPage (props) {
             return {
                 ...prevData,
                 items: itemList,
+                paymentTotal: invoiceTotal(),
                 paymentTerms: paymentTerms,
                 invoiceDate: invoiceDate
             }
         })
     }, [itemList, paymentTerms, invoiceDate])
 
+    function invoiceTotal () {
+        let total = 0;
+        if (itemList.length > 0 && itemList[0].itemQty && itemList[0].itemPrice) {
+            itemList.map(currentItem => {
+                total += Number(currentItem.itemQty) * Number(currentItem.itemPrice)
+            })
+        }
+        return total
+    }
     
     function handleSubmit(event) {
         event.preventDefault()
@@ -108,126 +121,143 @@ function FormPage (props) {
     })
 
     return (
-        <div>
+        <div className='FormPage-Container'>
             <h2>New {formData.id}</h2>
             <form onSubmit={handleSubmit}>
                 <h4>Bill From</h4>
-                <label>
-                    Street Address
-                    <input
-                        type="text"
-                        onChange={handleChange}
-                        name="fromAddress"
-                        value={formData.fromAddress}
-                    />
-                </label>
-                <label>
-                    City
-                    <input
-                        type="text"
-                        onChange={handleChange}
-                        name="fromCity"
-                        value={formData.fromCity}
-                    />
-                </label>
-                <label>
-                    Post Code
-                    <input 
-                        type="text"
-                        onChange={handleChange}
-                        name="fromPost"
-                        value={formData.fromPost}
-                    />
-                </label>
-                <label>
-                    Country
-                    <input 
-                        type="text"
-                        onChange={handleChange}
-                        name="fromCountry"
-                        value={formData.fromCountry}
-                    />
-                </label>
+                <div className='FormPage-FromContainer'>
+                    <div className='FormPage-From-StreetAddress-Container'>
+                        <label>Street Address</label>
+                        <input
+                            className='FormPage-Input glassMinor'
+                            type="text"
+                            onChange={handleChange}
+                            name="fromAddress"
+                            value={formData.fromAddress}
+                        />
+                    </div>
+                    <label>
+                        City
+                        <input
+                            className='FormPage-Input glassMinor'
+                            type="text"
+                            onChange={handleChange}
+                            name="fromCity"
+                            value={formData.fromCity}
+                        />
+                    </label>
+                    <label>
+                        Post Code
+                        <input 
+                            className='FormPage-Input glassMinor'
+                            type="text"
+                            onChange={handleChange}
+                            name="fromPost"
+                            value={formData.fromPost}
+                        />
+                    </label>
+                    <label>
+                        Country
+                        <input 
+                            className='FormPage-Input glassMinor'
+                            type="text"
+                            onChange={handleChange}
+                            name="fromCountry"
+                            value={formData.fromCountry}
+                        />
+                    </label>
+                </div>
                 <h4>Bill To</h4>
-                <label>
-                    Client's Name
-                    <input 
-                        type="text"
-                        onChange={handleChange}
-                        name="toName"
-                        value={formData.toName}
-                    />
-                </label>
-                <label>
-                    Client's Email
-                    <input 
-                        type="text"
-                        onChange={handleChange}
-                        name="toEmail"
-                        value={formData.toEmail}
-                    />
-                </label>
-                <label>
-                    Street Address
-                    <input 
-                        type="text"
-                        onChange={handleChange}
-                        name="toAddress"
-                        value={formData.toAddress}
-                    />
-                </label>
-                <label>
-                    City
-                    <input 
-                        type="text"
-                        onChange={handleChange}
-                        name="toCity"
-                        value={formData.toCity}
-                    />
-                </label>
-                <label>
-                    Post Code
-                    <input 
-                        type="text"
-                        onChange={handleChange}
-                        name="toPost"
-                        value={formData.toPost}
-                    />
-                </label>
-                <label>
-                    Country
-                    <input 
-                        type="text"
-                        onChange={handleChange}
-                        name="toCountry"
-                        value={formData.toCountry}
-                    />
-                </label>
-                <label>
-                    Invoice Date
-                    <Calendar 
-                        invoiceDate = {invoiceDate}
-                        setInvoiceDate = {setInvoiceDate}
-                    />
-                </label>
-                <label>
-                    Payment Terms
-                    <CustomSelect 
-                        itemList = {["Net 7 days", "Net 14 days", "Net 30 days", "Net 90 days"]}
-                        selectedOption = {paymentTerms}
-                        setSelectedOption = {setPaymentTerms}
-                        default = {"Select an option"}
-                    />
-                </label>
-                <label>
-                    Project Description
-                    <input
-                        type="text"
-                        onChange={handleChange}
-                        name="project"
-                        value={formData.project}
-                    />
-                </label>
+                <div className='FormPage-ToContainer'>
+                    <label className='FormPage-ToName'>
+                        Client's Name
+                        <input
+                            className='FormPage-Input glassMinor' 
+                            type="text"
+                            onChange={handleChange}
+                            name="toName"
+                            value={formData.toName}
+                        />
+                    </label>
+                    <label className='FormPage-ToEmail'>
+                        Client's Email
+                        <input
+                            className='FormPage-Input glassMinor'
+                            type="text"
+                            onChange={handleChange}
+                            name="toEmail"
+                            value={formData.toEmail}
+                        />
+                    </label>
+                    <label className='FormPage-ToAddress'>
+                        Street Address
+                        <input
+                            className='FormPage-Input glassMinor'
+                            type="text"
+                            onChange={handleChange}
+                            name="toAddress"
+                            value={formData.toAddress}
+                        />
+                    </label>
+                    <label>
+                        City
+                        <input 
+                            className='FormPage-Input glassMinor'
+                            type="text"
+                            onChange={handleChange}
+                            name="toCity"
+                            value={formData.toCity}
+                        />
+                    </label>
+                    <label>
+                        Post Code
+                        <input 
+                            className='FormPage-Input glassMinor'
+                            type="text"
+                            onChange={handleChange}
+                            name="toPost"
+                            value={formData.toPost}
+                        />
+                    </label>
+                    <label>
+                        Country
+                        <input 
+                            className='FormPage-Input glassMinor'
+                            type="text"
+                            onChange={handleChange}
+                            name="toCountry"
+                            value={formData.toCountry}
+                        />
+                    </label>
+                </div>
+                <div className='FormPage-To-Invoice-Container'>
+                    <label>
+                        Invoice Date
+                        <Calendar 
+                            invoiceDate = {invoiceDate}
+                            setInvoiceDate = {setInvoiceDate}
+                        />
+                    </label>
+                    <label>
+                        Payment Terms
+                        <CustomSelect 
+                            itemList = {["Net 7 days", "Net 14 days", "Net 30 days", "Net 90 days"]}
+                            selectedOption = {paymentTerms}
+                            setSelectedOption = {setPaymentTerms}
+                            default = {"Select an option"}
+                        />
+                    </label>
+                    <label>
+                        Project Description
+                        <input
+                            className='FormPage-Input glassMinor'
+                            type="text"
+                            onChange={handleChange}
+                            name="project"
+                            value={formData.project}
+                        />
+                    </label>
+                </div>
                 <div>
                     <h4>Item List</h4>
                     <label>Item Name</label>

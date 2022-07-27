@@ -7,15 +7,15 @@ import {FormPage} from './FormPage';
 import {InvoicePage} from './InvoicePage';
 
 function App() {
+  // Invoice data section
   const [invoiceList, setInvoiceList] = React.useState([])
   const [selectedInvoice, setSelectedInvoice] = React.useState()
 
-  console.log(invoiceList)
+  // Toggling for dark and light mode
 
-  /*
-  React.useEffect(()=> {
-    console.log(selectedInvoice)
-  }, [selectedInvoice])*/
+  const [toggleDarkMode, setToggleDarkMode] = React.useState(false)
+  console.log(toggleDarkMode)
+
 
   // Toggle states for different major sections of the app
   const [mainSectionToggle, setMainSectionToggle] = React.useState(true)
@@ -23,11 +23,14 @@ function App() {
   const [invoiceSectionToggle, setInvoiceSectionToggle] = React.useState(false)
 
   return (
-    <div className="App">
-      <Navbar />
+    <div className={toggleDarkMode ? "App darkMajor" : "App lightMajor"}>
+      <Navbar 
+        setToggleDarkMode = {setToggleDarkMode}
+      />
       {mainSectionToggle && 
       <MainPage 
         invoiceList = {invoiceList}
+        toggleDarkMode = {toggleDarkMode}
         setInvoiceList = {setInvoiceList}
         setSelectedInvoice = {setSelectedInvoice}
         setMainSectionToggle = {setMainSectionToggle}
