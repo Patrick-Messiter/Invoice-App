@@ -13,11 +13,11 @@ function CustomSelect (props) {
     })
     
     return (
-        <div className='CustomSelect-Wrapper'>
-            <div className='CustomSelect-Container'>
-                <div onClick={toggleOptions}>
-                    {props.selectedOption ? props.selectedOption : props.default}
-                </div>
+        <div onClick={toggleOptions} className='CustomSelect-Wrapper'>
+            <div ref={props.customSelectRef}>
+                {props.selectedOption ? props.selectedOption : props.default}
+            </div>
+            <div className='CustomSelect-Container glassMinor'>
                 {toggleSelect && 
                 <ul>
                     {mapList}

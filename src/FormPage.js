@@ -20,9 +20,6 @@ function FormPage (props) {
     //State for handling addition or subtraction of items in form
     const [itemList, setItemList] = React.useState([])
 
-
-    console.log(formData)
-
     function toggleMain () {
         props.setFormSectionToggle(false)
         props.setMainSectionToggle(true)
@@ -120,10 +117,17 @@ function FormPage (props) {
         )
     })
 
+    // Custome Select reference section
+    const customSelectRef = React.useRef()
+
+    function customFocus() {
+        customSelectRef.current.focus()
+    }
+
     return (
         <div className='FormPage-Container'>
             <h2>New {formData.id}</h2>
-            <form onSubmit={handleSubmit}>
+            <form className='Form' onSubmit={handleSubmit}>
                 <h4>Bill From</h4>
                 <div className='FormPage-FromContainer'>
                     <div className='FormPage-From-StreetAddress-Container'>
@@ -199,7 +203,7 @@ function FormPage (props) {
                             value={formData.toAddress}
                         />
                     </label>
-                    <label>
+                    <label className='FormPage-ToCity'>
                         City
                         <input 
                             className='FormPage-Input glassMinor'
@@ -231,8 +235,7 @@ function FormPage (props) {
                     </label>
                 </div>
                 <div className='FormPage-To-Invoice-Container'>
-                    <label>
-                        Invoice Date
+                    <label>Invoice Date
                         <Calendar 
                             invoiceDate = {invoiceDate}
                             setInvoiceDate = {setInvoiceDate}
@@ -240,14 +243,17 @@ function FormPage (props) {
                     </label>
                     <label>
                         Payment Terms
-                        <CustomSelect 
-                            itemList = {["Net 7 days", "Net 14 days", "Net 30 days", "Net 90 days"]}
-                            selectedOption = {paymentTerms}
-                            setSelectedOption = {setPaymentTerms}
-                            default = {"Select an option"}
-                        />
+                        <div className='FormPage-CustomSelect-Container FormPage-Input glassMinor' onClick={customFocus}>
+                            <CustomSelect 
+                                itemList = {["Net 7 days", "Net 14 days", "Net 30 days", "Net 90 days"]}
+                                selectedOption = {paymentTerms}
+                                setSelectedOption = {setPaymentTerms}
+                                default = {"Select an option"}
+                                customSelectRef = {customSelectRef}
+                            />
+                        </div>
                     </label>
-                    <label>
+                    <label className='FormPage-Project'>
                         Project Description
                         <input
                             className='FormPage-Input glassMinor'

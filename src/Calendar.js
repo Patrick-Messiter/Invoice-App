@@ -73,17 +73,22 @@ function Calendar (props) {
     return (
         <div className='Calendar-Wrapper'>
             <div className='Calendar-Container'>
-                <div onClick={toggleContainer}>
+                <div className='Calendar-Top FormPage-Input glassMinor'onClick={toggleContainer}>
                     <p>{`${props.invoiceDate.day} ${props.invoiceDate.monthName} ${props.invoiceDate.year}`}</p>
+                    <p>&#128197;</p>
                 </div>
                 {toggleCalendar &&
-                <div>
-                    <p onClick={(e) => {earlierMonth(); decrementYear(e)}}>left</p>
-                    {calendarDates.months[props.invoiceDate.month].name}
-                    <p onClick={(e) => {laterMonth(); incrementYear(e)}}>right</p> 
-                    <ul>
-                        {mapCalendar}
-                    </ul>
+                <div className='Calendar-Bottom-Container glassMinor'>
+                    <div className='Calendar-Bottom-Header'>
+                        <p onClick={(e) => {earlierMonth(); decrementYear(e)}}>left</p>
+                        {calendarDates.months[props.invoiceDate.month].name}
+                        <p onClick={(e) => {laterMonth(); incrementYear(e)}}>right</p>
+                    </div>
+                    <div className='Calendar-Bottom-ListContainer'>
+                        <ul className='Calendar-Bottom-List'>
+                            {mapCalendar}
+                        </ul>
+                    </div> 
                 </div>}
             </div>
             

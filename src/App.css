@@ -26,7 +26,7 @@
 
 .glassMinor {
     backdrop-filter: blur(20px);
-    background-color: rgba(255, 174, 174, 0.55);
+    background-color: rgba(255, 255, 255, 0.55);
     box-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
 }
 
@@ -90,18 +90,23 @@
     border: 1px solid orange;
 }
 
+.FormPage-Container p {
+    margin: 0;
+}
+
 .FormPage-Input {
     width: 100%;
-    padding: 0.5rem 0;
+    height: 2rem;
     border: none;
     border-radius: 0.3rem;
+    margin-bottom: 2%;
 }
 
 .FormPage-FromContainer {
     width: 80%;
-    height: fit-content;
+    min-height: fit-content;
     display: grid;
-    gap: 5%;
+    column-gap: 5%;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr 1fr;
 }
@@ -114,9 +119,9 @@
 
 .FormPage-ToContainer {
     width: 80%;
-    height: fit-content;
+    min-height: fit-content;
     display: grid;
-    gap: 5%;
+    column-gap: 5%;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, 1fr);
 }
@@ -131,4 +136,145 @@
 
 .FormPage-ToAddress {
     grid-area: 3 / 1 / 3 / span 3;
+}
+
+.FormPage-ToCity {
+    grid-area: 4 / 1 / 4 / span 1;
+}
+
+.FormPage-To-Invoice-Container {
+    width: 80%;
+    display: grid;
+    height: fit-content;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    column-gap: 5%;
+}
+
+
+.Calendar-Wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+}
+
+.Calendar-Wrapper p {
+    margin: 0;
+}
+
+.Calendar-Container {
+    position: relative;
+}
+
+.Calendar-Top {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.Calendar-Bottom-Container {
+    min-width: 100%;
+    max-height: fit-content;
+    position: absolute;
+    top: 80%;
+    z-index: 1;
+    border-radius: 5px;
+    margin-top: 1rem;
+}
+
+.Calendar-Bottom-Header {
+    max-width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0.5rem;
+}
+
+.Calendar-Bottom-ListContainer {
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    justify-content: center;
+}
+
+.Calendar-Bottom-List {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    justify-items: center;
+    padding: 0;
+    margin: 0;
+    gap: 3px;
+}
+
+.Calendar-Bottom-List li {
+    grid-area: auto;
+    list-style-type: none;
+    width: 1rem;
+    padding: 0.2rem;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    border-radius: 0.1rem;
+}
+
+.Calendar-Bottom-List li:hover {
+    background-color: rgb(2, 164, 211);
+    color: whitesmoke;
+    transition: 0.3s;
+}
+
+.Calendar-Bottom-List li:active {
+    background-color: blue;
+    color: whitesmoke;
+}
+
+.FormPage-CustomSelect-Container {
+    display: flex;
+    width: 100%;
+    height: 2rem;
+}
+
+.CustomSelect-Wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.CustomSelect-Container {
+    position: absolute;
+    z-index: 3;
+    min-width: 100%;
+    display: flex;
+    top: 80%;
+    margin-top: 1rem;
+    border-radius: 0.3rem;
+}
+
+.CustomSelect-Container ul {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    z-index: 2;
+}
+
+.CustomSelect-Container li {
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style-type: none;
+}
+
+.CustomSelect-Container li:hover {
+    background-color: rgb(2, 164, 211);
+    color: whitesmoke;
+    transition: 0.3s;
+}
+
+.FormPage-Project {
+    grid-area: 2 / 1 / 2 / span 2;
 }
