@@ -9,11 +9,11 @@ function CustomSelect (props) {
     }
 
     const mapList = props.itemList.map((currentItem, index) => {
-        return <li key = {index} onClick={() => {props.setSelectedOption(currentItem); toggleOptions()}}>{currentItem}</li>
+        return <li key = {index} className="PositiveResponse" onClick={() => {props.setSelectedOption(currentItem); toggleOptions()}}>{currentItem}</li>
     })
     
     return (
-        <div onClick={toggleOptions} className='CustomSelect-Wrapper'>
+        <div onClick={toggleOptions} className='CustomSelect-Wrapper glassMinor'>
             <div ref={props.customSelectRef}>
                 {props.selectedOption ? props.selectedOption : props.default}
             </div>

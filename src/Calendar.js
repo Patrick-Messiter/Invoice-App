@@ -67,31 +67,28 @@ function Calendar (props) {
     }
     
     const mapCalendar = calendarDates.months[props.invoiceDate.month].days.map((currentDay, index) => {
-        return <li key={index} value={index +1} onClick={(e)=> selectDate(e)}>{currentDay}</li>
+        return <li key={index} value={index +1} className="PositiveResponse" onClick={(e)=> selectDate(e)}>{currentDay}</li>
     })
     
     return (
         <div className='Calendar-Wrapper'>
-            <div className='Calendar-Container'>
-                <div className='Calendar-Top FormPage-Input glassMinor'onClick={toggleContainer}>
-                    <p>{`${props.invoiceDate.day} ${props.invoiceDate.monthName} ${props.invoiceDate.year}`}</p>
-                    <p>&#128197;</p>
-                </div>
-                {toggleCalendar &&
-                <div className='Calendar-Bottom-Container glassMinor'>
-                    <div className='Calendar-Bottom-Header'>
-                        <p onClick={(e) => {earlierMonth(); decrementYear(e)}}>left</p>
-                        {calendarDates.months[props.invoiceDate.month].name}
-                        <p onClick={(e) => {laterMonth(); incrementYear(e)}}>right</p>
-                    </div>
-                    <div className='Calendar-Bottom-ListContainer'>
-                        <ul className='Calendar-Bottom-List'>
-                            {mapCalendar}
-                        </ul>
-                    </div> 
-                </div>}
+            <div className='Calendar-Top FormPage-Input glassMinor'onClick={toggleContainer}>
+                <p>{`${props.invoiceDate.day} ${props.invoiceDate.monthName} ${props.invoiceDate.year}`}</p>
+                <p>&#128197;</p>
             </div>
-            
+            {toggleCalendar &&
+            <div className='Calendar-Bottom-Container glassMinor'>
+                <div className='Calendar-Bottom-Header'>
+                    <p onClick={(e) => {earlierMonth(); decrementYear(e)}}>left</p>
+                    {calendarDates.months[props.invoiceDate.month].name}
+                    <p onClick={(e) => {laterMonth(); incrementYear(e)}}>right</p>
+                </div>
+                <div className='Calendar-Bottom-ListContainer'>
+                    <ul className='Calendar-Bottom-List'>
+                         {mapCalendar}
+                    </ul>
+                </div> 
+            </div>}
         </div>
     )
 }

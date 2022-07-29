@@ -3,7 +3,6 @@ import React from 'react';
 import './App.css';
 import {Navbar} from './Navbar';
 import {MainPage} from './Mainpage';
-import {FormPage} from './FormPage';
 import {InvoicePage} from './InvoicePage';
 
 function App() {
@@ -14,7 +13,6 @@ function App() {
   // Toggling for dark and light mode
 
   const [toggleDarkMode, setToggleDarkMode] = React.useState(false)
-  console.log(toggleDarkMode)
 
 
   // Toggle states for different major sections of the app
@@ -34,17 +32,10 @@ function App() {
         setInvoiceList = {setInvoiceList}
         setSelectedInvoice = {setSelectedInvoice}
         setMainSectionToggle = {setMainSectionToggle}
+        formSectionToggle = {formSectionToggle}
         setFormSectionToggle = {setFormSectionToggle}
         setInvoiceSectionToggle = {setInvoiceSectionToggle}
       />}
-      {formSectionToggle && 
-      <FormPage 
-        setInvoiceList = {setInvoiceList}
-        setMainSectionToggle = {setMainSectionToggle}
-        setFormSectionToggle = {setFormSectionToggle}
-        setInvoiceSectionToggle = {setInvoiceSectionToggle}
-      />
-      }
       {invoiceSectionToggle && 
       <InvoicePage
         invoiceList = {invoiceList}

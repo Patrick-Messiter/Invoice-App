@@ -2,6 +2,7 @@ import React from 'react'
 
 import {MainPageHeader} from './MainPageHeader'
 import {MainPageInvoiceContainer} from './MainPageInvoiceContainer'
+import {FormPage} from './FormPage';
 
 
 function MainPage (props) {
@@ -21,6 +22,13 @@ function MainPage (props) {
                 toggleDarkMode = {props.toggleDarkMode}
                 setSelectedInvoice = {props.setSelectedInvoice}
             />
+            {props.formSectionToggle && 
+            <FormPage 
+                setInvoiceList = {props.setInvoiceList}
+                formSectionToggle = {props.formSectionToggle}
+                setFormSectionToggle = {props.setFormSectionToggle}
+            />
+            }
         </main>
     )
 }

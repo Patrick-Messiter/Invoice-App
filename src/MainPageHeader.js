@@ -4,7 +4,6 @@ import {CustomSelect} from './CustomSelect'
 function MainPageHeader (props) {
 
     function toggleForm () {
-        props.setMainSectionToggle(false)
         props.setFormSectionToggle(true)
     }
 
