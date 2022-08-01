@@ -2,7 +2,7 @@ import React from 'react'
 
 function InvoicePageItemCard (props) {
     return (
-        <div>
+        <div className='InvoicePage-InvoiceListItem'>
             <h5>{props.item.itemName}</h5>
             <h5>{props.item.itemQty}</h5>
             <h5>{props.item.itemPrice}</h5>

@@ -13,16 +13,22 @@ function InvoicePage (props) {
         return <InvoicePageItemCard key={currentItem.id} item = {currentItem}/>
     })
 
+    console.log(props.invoice)
+
     return (
         <section>
             <button onClick={toggleMain}>Go back</button>
             <div className='InvoicePage-TopContainer'>
 
             </div>
-            <div className='InvoicePage-MainContainer'>
+            <div className='InvoicePage-MainContainer glassMinor'>
                 <div className='InvoicePage-BillFromContainer'>
                     <div>
                         <h4>{props.invoice.id}</h4>
+                        <div className='InvoicePage-Dates'>
+                            <p>Invoice Date: <span>{`${props.invoice.invoiceDate.day} ${props.invoice.invoiceDate.monthName} ${props.invoice.invoiceDate.year}`}</span></p>
+                            <p>Payment Terms: <span>{props.invoice.paymentTerms}</span></p>
+                        </div>
                     </div>
                     <div>
                         <ul>
@@ -34,10 +40,6 @@ function InvoicePage (props) {
                     </div>
                 </div>
                 <div className='InvoicePage-BillToContainer'>
-                    <div className='InvoicePage-Dates'>
-                        <p>Invoice Date</p>
-                        <p>Payment Terms</p>
-                    </div>
                     <div className='InvoicePage-ClientDetails'>
                         <p>Bill To</p>
                         <ul>
@@ -53,13 +55,18 @@ function InvoicePage (props) {
                         <h4>{props.invoice.toEmail}</h4>
                     </div>
                 </div>
-                <div className='InvoicePage-InvoiceContainer'>
+                <div className='InvoicePage-InvoiceContainer glassMinor'>
+                    <div className='InvoicePage-InvoiceHeadings'>
+                        <p>Item Name</p>
+                        <p>Qty.</p>
+                        <p>Price</p>
+                        <p>Total</p>
+                    </div>
                     <div className='InvoicePage-InvoiceList'>
                         {mapInvoiceItems}
                     </div>
                     <div className='InvoicePage-InvoiceTotal'>
-                        <p>Billings:</p>
-                        <h3>{props.invoice.paymentTotal}</h3>
+                        <p>Billings: <span>{`$${props.invoice.paymentTotal}`}</span></p>
                     </div>
                 </div>
             </div>

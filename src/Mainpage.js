@@ -1,4 +1,5 @@
 import React from 'react'
+import {AnimatePresence} from "framer-motion"
 
 import {MainPageHeader} from './MainPageHeader'
 import {MainPageInvoiceContainer} from './MainPageInvoiceContainer'
@@ -22,13 +23,15 @@ function MainPage (props) {
                 toggleDarkMode = {props.toggleDarkMode}
                 setSelectedInvoice = {props.setSelectedInvoice}
             />
-            {props.formSectionToggle && 
-            <FormPage 
-                setInvoiceList = {props.setInvoiceList}
-                formSectionToggle = {props.formSectionToggle}
-                setFormSectionToggle = {props.setFormSectionToggle}
-            />
-            }
+            <AnimatePresence>
+                {props.formSectionToggle && 
+                <FormPage 
+                    setInvoiceList = {props.setInvoiceList}
+                    formSectionToggle = {props.formSectionToggle}
+                    setFormSectionToggle = {props.setFormSectionToggle}
+                />
+                }
+            </AnimatePresence>
         </main>
     )
 }
