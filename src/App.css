@@ -31,6 +31,17 @@
     color: whitesmoke;
 }
 
+.NegativeResponse:hover {
+    background-color: rgb(255, 138, 138);
+    color: whitesmoke;
+    transition: 0.3s;
+}
+
+.NegativeResponse:active {
+    background-color: rgb(255, 91, 91);
+    color: whitesmoke;
+}
+
 /*CONDITIONAL SECTION */
 
 .lightMajor {
@@ -50,6 +61,12 @@
 
 /*COMPONENTS MAIN SECTION */
 
+
+/* NAVBAR COMPONENT */ 
+
+nav {
+    position: relative;
+}
 
 /*MAINPAGE COMPONENT */
 
@@ -110,6 +127,7 @@
     border-radius: 0.3rem;
     z-index: 2;
     left: 0;
+    bottom: 0;
 }
 
 
@@ -340,13 +358,40 @@
 
 /* INVOICE PAGE */
 
+.InvoicePage-Container {
+    max-height: 100vh;
+    height: 100%;
+    max-width: 80vh;
+    width: 100%;
+}
+
+.InvoicePage-TopContainer {
+    display: flex;
+    max-height: 15vh;
+    height: 100%;
+    max-width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.4rem 5vh;
+    border-radius: 0.3rem;
+    margin-bottom: 3%;
+}
+
+.InvoicePage-TopContainer-ButtonsContainer {
+    width: 65%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .InvoicePage-MainContainer{
     padding: 5vh;
-    height: 70vh;
-    width: 70vh;
+    max-height: 60vh;
+    height: 60vh;
+    max-width: 100%;
     border-radius: 0.3rem;
     display: grid;
-    grid-template-rows: 2fr 3fr 3fr;
+    align-items: center;
+    grid-template-rows: 2fr 2fr 4fr;
 }
 
 .InvoicePage-BillFromContainer{
@@ -355,7 +400,6 @@
     height: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }
 
 .InvoicePage-BillFromContainer p {
@@ -395,30 +439,57 @@
 
 .InvoicePage-InvoiceContainer {
     grid-row: 3 / 3;
-    height: 90%;
+    height: 70%;
     width: 90%;
+    max-height:70%;
+    max-width: 90%;
     padding: 5%;
     display: grid;
+    align-items: center;
     grid-template-rows: 1fr 2fr 1fr;
     border-radius: 0.3rem;
+}
+
+.InvoicePage-InvoiceContainer p {
+    margin: 0;
 }
 
 .InvoicePage-InvoiceHeadings {
     grid-row: 1 / 1;
     display: grid;
+    align-items: center;
     grid-template-columns: 3fr 1fr 1fr 1fr;
 }
 
 .InvoicePage-InvoiceList {
     grid-row: 2 / 2;
+    max-width: 100%;
+    max-height: 100%;
     overflow: scroll;
 }
 
 .InvoicePage-InvoiceListItem {
     display: grid;
+    align-items: center;
+    width: 100%;
     grid-template-columns: 3fr 1fr 1fr 1fr;
+    padding: 0.5rem 0;
 }
 
 .InvoicePage-InvoiceTotal {
     grid-row: 3 / 3;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 5fr 1fr;
+    background-color: rgb(255, 138, 138);
+    border-radius: 0.3rem;
+}
+
+.InvoicePage-InvoiceTotal p {
+    margin-left: 3%;
+}
+
+.InvoicePage-InvoiceTotal span {
+    font-size: 2rem;
+    font-weight: bolder;
 }

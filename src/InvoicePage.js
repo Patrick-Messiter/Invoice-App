@@ -1,6 +1,10 @@
 import React from 'react'
+import {AnimatePresence} from "framer-motion"
+
 
 import {InvoicePageItemCard} from './InvoicePageItemCard'
+import {FormPage} from './FormPage';
+
 
 function InvoicePage (props) {
 
@@ -9,17 +13,35 @@ function InvoicePage (props) {
         props.setMainSectionToggle(true)
     }
 
+    function cleanState () {
+        props.setSelectedInvoice()
+    }
+
+
+    function toggleForm () {
+        props.setFormSectionToggle(prev => !prev)
+    }
+
+    function deleteInvoice () {
+        props.setInvoiceList(prevList => {
+            return prevList.filter(currentItem => currentItem.id !== props.invoice.id)
+        })
+    }
+
     const mapInvoiceItems = props.invoice.items.map(currentItem => {
         return <InvoicePageItemCard key={currentItem.id} item = {currentItem}/>
     })
 
-    console.log(props.invoice)
-
     return (
-        <section>
-            <button onClick={toggleMain}>Go back</button>
-            <div className='InvoicePage-TopContainer'>
-
+        <section className='InvoicePage-Container'>
+            <button onClick={() =>{cleanState();toggleMain()}}>Go back</button>
+            <div className='InvoicePage-TopContainer glassMinor'>
+                <p>Status: </p>
+                <div className='InvoicePage-TopContainer-ButtonsContainer'>
+                    <button onClick={toggleForm} className='Button PositiveResponse glassMinor'>Edit</button>
+                    <button onClick={()=>{deleteInvoice();toggleMain()}} className='Button NegativeResponse glassMinor'>Delete</button>
+                    <button className='Button PositiveResponse glassMinor'>Mark as Paid</button>
+                </div>
             </div>
             <div className='InvoicePage-MainContainer glassMinor'>
                 <div className='InvoicePage-BillFromContainer'>
@@ -44,10 +66,8 @@ function InvoicePage (props) {
                         <p>Bill To</p>
                         <ul>
                             <li>{props.invoice.toName}</li>
-                            <li>{props.invoice.toAddress}</li>
-                            <li>{props.invoice.toCity}</li>
-                            <li>{props.invoice.toCountry}</li>
-                            <li>{props.invoice.toPost}</li>
+                            <li>{props.invoice.toAddress} {props.invoice.toCity}</li>
+                            <li>{props.invoice.toCountry} {props.invoice.toPost}</li>
                         </ul>
                     </div>
                     <div className='InvoicePage-ClientEmail'>
@@ -66,10 +86,21 @@ function InvoicePage (props) {
                         {mapInvoiceItems}
                     </div>
                     <div className='InvoicePage-InvoiceTotal'>
-                        <p>Billings: <span>{`$${props.invoice.paymentTotal}`}</span></p>
+                        <p>Total Outstanding:</p>
+                        <span>{`$${props.invoice.paymentTotal}`}</span>
                     </div>
                 </div>
             </div>
+            <AnimatePresence>
+                {props.formSectionToggle && 
+                <FormPage 
+                    setInvoiceList = {props.setInvoiceList}
+                    invoice = {props.invoice}
+                    formSectionToggle = {props.formSectionToggle}
+                    setFormSectionToggle = {props.setFormSectionToggle}
+                />
+                }
+            </AnimatePresence>
         </section>
     )
 }

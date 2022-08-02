@@ -20,6 +20,20 @@ function App() {
   const [formSectionToggle, setFormSectionToggle] = React.useState(false)
   const [invoiceSectionToggle, setInvoiceSectionToggle] = React.useState(false)
 
+  console.log(selectedInvoice)
+
+  //Update the current invoice selected if editing from the Invoice Page
+  React.useEffect (()=> {
+    if (selectedInvoice) {
+      invoiceList.map(currentInv => {
+        if (currentInv.id === selectedInvoice.id) {
+          setSelectedInvoice(currentInv)
+        }
+      })
+    }
+  }, [invoiceList]) 
+
+
   return (
     <div className={toggleDarkMode ? "App darkMajor" : "App lightMajor"}>
       <Navbar 
@@ -30,6 +44,7 @@ function App() {
         invoiceList = {invoiceList}
         toggleDarkMode = {toggleDarkMode}
         setInvoiceList = {setInvoiceList}
+        invoice = {selectedInvoice}
         setSelectedInvoice = {setSelectedInvoice}
         setMainSectionToggle = {setMainSectionToggle}
         formSectionToggle = {formSectionToggle}
@@ -39,10 +54,12 @@ function App() {
       {invoiceSectionToggle && 
       <InvoicePage
         invoiceList = {invoiceList}
+        setInvoiceList = {setInvoiceList}
         invoice = {selectedInvoice}
         setSelectedInvoice = {setSelectedInvoice}
         setInvoiceSectionToggle = {setInvoiceSectionToggle}
         setMainSectionToggle = {setMainSectionToggle}
+        formSectionToggle = {formSectionToggle}
         setFormSectionToggle = {setFormSectionToggle}
       />}
     </div>

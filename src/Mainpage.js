@@ -27,6 +27,7 @@ function MainPage (props) {
                 {props.formSectionToggle && 
                 <FormPage 
                     setInvoiceList = {props.setInvoiceList}
+                    invoice = {props.invoice}
                     formSectionToggle = {props.formSectionToggle}
                     setFormSectionToggle = {props.setFormSectionToggle}
                 />

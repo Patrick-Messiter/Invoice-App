@@ -16,9 +16,18 @@ const animation = {
 
 
 function FormPage (props) {
+
     const [formData, setFormData] = React.useState(
         {id: generateRandomId()}
     )
+
+    //State change if editing a current invoice rather than creating a new invoice
+
+    React.useEffect (()=> {
+        if (props.invoice) {
+            setFormData(props.invoice)
+        }
+    }, [])
 
     //State for Payment Option custom select
     const [paymentTerms, setPaymentTerms] = React.useState()
@@ -66,6 +75,10 @@ function FormPage (props) {
     
     function handleSubmit(event) {
         event.preventDefault()
+
+        props.setInvoiceList(prevList => {
+            return prevList.filter(currentItem => currentItem.id !== formData.id)
+        })
 
         props.setInvoiceList(prevList => {
             return [
@@ -279,7 +292,7 @@ function FormPage (props) {
                     <button type='button' className='FormPage-ItemContainer-Button glassMinor PositiveResponse' onClick={addFormItem}>Add New Item</button>
                 </div>
                 <div className='FormPage-Bottom'>
-                    <button type='button' onClick={toggleForm} className="Button glassMinor">Cancel</button>
+                    <button type='button' onClick={toggleForm} className="Button NegativeResponse glassMinor">Cancel</button>
                     <button className='Button PositiveResponse glassMinor'>Complete</button>
                 </div>
             </form>
