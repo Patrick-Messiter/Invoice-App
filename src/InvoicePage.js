@@ -28,6 +28,20 @@ function InvoicePage (props) {
         })
     }
 
+    function payInvoice () {
+        props.setSelectedInvoice(prevInvoice => {
+            return {
+                ...prevInvoice,
+                status: "Paid"
+            }
+        })
+        props.setInvoiceList(prevList => {
+            return prevList.map(currentItem => {
+                return currentItem.id === props.invoice.id ? {...currentItem, status: "Paid"} : {...currentItem}
+            })
+        })
+    }
+
     const mapInvoiceItems = props.invoice.items.map(currentItem => {
         return <InvoicePageItemCard key={currentItem.id} item = {currentItem}/>
     })
@@ -36,11 +50,11 @@ function InvoicePage (props) {
         <section className='InvoicePage-Container'>
             <button onClick={() =>{cleanState();toggleMain()}}>Go back</button>
             <div className='InvoicePage-TopContainer glassMinor'>
-                <p>Status: </p>
+                <p>Status: {props.invoice.status} </p>
                 <div className='InvoicePage-TopContainer-ButtonsContainer'>
                     <button onClick={toggleForm} className='Button PositiveResponse glassMinor'>Edit</button>
                     <button onClick={()=>{deleteInvoice();toggleMain()}} className='Button NegativeResponse glassMinor'>Delete</button>
-                    <button className='Button PositiveResponse glassMinor'>Mark as Paid</button>
+                    <button onClick={payInvoice} className='Button PositiveResponse glassMinor'>Mark as Paid</button>
                 </div>
             </div>
             <div className='InvoicePage-MainContainer glassMinor'>

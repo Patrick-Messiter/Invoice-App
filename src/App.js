@@ -20,8 +20,6 @@ function App() {
   const [formSectionToggle, setFormSectionToggle] = React.useState(false)
   const [invoiceSectionToggle, setInvoiceSectionToggle] = React.useState(false)
 
-  console.log(selectedInvoice)
-
   //Update the current invoice selected if editing from the Invoice Page
   React.useEffect (()=> {
     if (selectedInvoice) {

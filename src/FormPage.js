@@ -58,7 +58,8 @@ function FormPage (props) {
                 items: itemList,
                 paymentTotal: invoiceTotal(),
                 paymentTerms: paymentTerms,
-                invoiceDate: invoiceDate
+                invoiceDate: invoiceDate,
+                status: "Outstanding",
             }
         })
     }, [itemList, paymentTerms, invoiceDate])

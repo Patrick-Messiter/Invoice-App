@@ -16,6 +16,7 @@ function MainPageInvoiceContainer (props) {
         })
     }
 
+    
     const mapInvoices = props.invoiceList.map(currentInv => {
         return (
             <MainPageInvoiceCard 
@@ -25,7 +26,7 @@ function MainPageInvoiceContainer (props) {
                 toggleToSelectedInvoice={() => toggleToSelectedInvoice(currentInv.id)}
             />
         )
-    })
+    }) 
 
     return (
         <div className='MainPage-Invoice-Container'>

@@ -13,7 +13,12 @@ function MainPageHeader (props) {
                 <h1>Invoices</h1>
                 <p>There are currently {props.invoiceList.length} invoices</p>
             </div>
-            <CustomSelect itemList = {[]} default={"Filter by status"} />
+            <CustomSelect 
+                itemList = {["Total Value", "Status"]}
+                default={"Choose a filter to sort by:"}
+                selectedOption = {props.filteredListChoice}
+                setSelectedOption = {props.setFilteredListChoice}
+            />
             <button onClick={toggleForm}>New Invoice</button>
         </header>
     )
