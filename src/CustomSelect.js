@@ -17,7 +17,7 @@ function CustomSelect (props) {
             <div ref={props.customSelectRef}>
                 {props.selectedOption ? props.selectedOption : props.default}
             </div>
-            <div className='CustomSelect-Container glassMinor'>
+            <div className='CustomSelect-Container'>
                 {toggleSelect && 
                 <ul>
                     {mapList}

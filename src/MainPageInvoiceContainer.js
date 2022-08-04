@@ -16,21 +16,37 @@ function MainPageInvoiceContainer (props) {
         })
     }
 
-    
-    const mapInvoices = props.invoiceList.map(currentInv => {
-        return (
-            <MainPageInvoiceCard 
-                invoice={currentInv} 
-                key={currentInv.id} 
-                toggleDarkMode={props.toggleDarkMode}
-                toggleToSelectedInvoice={() => toggleToSelectedInvoice(currentInv.id)}
-            />
-        )
-    }) 
+    console.log(props.filteredList)
+    console.log(props.filteredListChoice)
+    function mappingInvoices () {
+        console.log(props.invoiceList)
+        if (props.filteredListChoice && props.filteredListChoice !== "None") {
+            return props.filteredList.map(currentInv => {
+                return (
+                    <MainPageInvoiceCard 
+                        invoice={currentInv} 
+                        key={currentInv.id} 
+                        toggleDarkMode={props.toggleDarkMode}
+                        toggleToSelectedInvoice={() => toggleToSelectedInvoice(currentInv.id)}
+                    />
+                )
+            })
+        }
+        return props.invoiceList.map(currentInv => {
+            return (
+                <MainPageInvoiceCard 
+                    invoice={currentInv} 
+                    key={currentInv.id} 
+                    toggleDarkMode={props.toggleDarkMode}
+                    toggleToSelectedInvoice={() => toggleToSelectedInvoice(currentInv.id)}
+                />
+            )
+        })
+    }
 
     return (
         <div className='MainPage-Invoice-Container'>
-            {mapInvoices}
+            {mappingInvoices()}
         </div>
     )
 }
