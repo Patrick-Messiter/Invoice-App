@@ -21,14 +21,6 @@ function FormPage (props) {
         {id: generateRandomId()}
     )
 
-    //State change if editing a current invoice rather than creating a new invoice
-
-    React.useEffect (()=> {
-        if (props.invoice) {
-            setFormData(props.invoice)
-        }
-    }, [])
-
     //State for Payment Option custom select
     const [paymentTerms, setPaymentTerms] = React.useState()
 
@@ -37,6 +29,18 @@ function FormPage (props) {
 
     //State for handling addition or subtraction of items in form
     const [itemList, setItemList] = React.useState([])
+
+
+    //State change if editing a current invoice rather than creating a new invoice
+
+    React.useEffect (()=> {
+        if (props.invoice) {
+            setFormData(props.invoice)
+            setPaymentTerms(props.invoice.paymentTerms)
+            setInvoiceDate(props.invoice.invoiceDate)
+            setItemList(props.invoice.items)
+        }
+    }, [])
 
     function toggleForm () {
         props.setFormSectionToggle(false)

@@ -48,7 +48,7 @@ function InvoicePage (props) {
 
     return (
         <section className='InvoicePage-Container'>
-            <button onClick={() =>{cleanState();toggleMain()}}>Go back</button>
+            <button className="Button glassMinor NegativeResponse backButton" onClick={() =>{cleanState();toggleMain()}}>Go back</button>
             <div className='InvoicePage-TopContainer glassMinor'>
                 <p>Status: {props.invoice.status} </p>
                 <div className='InvoicePage-TopContainer-ButtonsContainer'>

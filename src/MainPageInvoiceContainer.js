@@ -16,10 +16,7 @@ function MainPageInvoiceContainer (props) {
         })
     }
 
-    console.log(props.filteredList)
-    console.log(props.filteredListChoice)
     function mappingInvoices () {
-        console.log(props.invoiceList)
         if (props.filteredListChoice && props.filteredListChoice !== "None") {
             return props.filteredList.map(currentInv => {
                 return (

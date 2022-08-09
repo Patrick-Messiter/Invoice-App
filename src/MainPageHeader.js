@@ -31,7 +31,7 @@ function MainPageHeader (props) {
                     setSelectedOption = {props.setSortedListChoice}
                 />
             </div>
-            <button onClick={toggleForm}>New Invoice</button>
+            <button className= "Button glassMinor PositiveResponse" onClick={toggleForm}>New Invoice</button>
         </header>
     )
 }

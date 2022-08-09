@@ -8,8 +8,9 @@ function Navbar (props) {
 
     return (
         <nav>
-            <h2>This is the navbar</h2>
-            <p onClick={toggleModes}>Click me!</p>
+            {props.toggleDarkMode ? 
+            <button className='Button glassMinor' onClick={toggleModes}>Dark Mode: &#127769;</button>
+            : <button className='Button glassMinor' onClick={toggleModes}>Light Mode: &#128161;</button>}
         </nav>
     )
 }

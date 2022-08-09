@@ -1,6 +1,7 @@
 
 * {
     font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 
@@ -66,6 +67,15 @@
 
 nav {
     position: relative;
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+nav button {
+    margin-right: 10%;
 }
 
 /*MAINPAGE COMPONENT */
@@ -79,12 +89,19 @@ nav {
 }
 
 .MainPage-Header-Container {
-    display: flex;
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 1fr;
+    column-gap: 3%;
     width: 100%;
     height: 15%;
     border: 1px solid red;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+}
+
+.MainPage-Header-Container h1 {
+    font-size: 2.4rem;
+    margin: 0;
 }
 
 .MainPage-Invoice-Container {
@@ -98,10 +115,10 @@ nav {
 }
 
 .MainPage-Invoice-Card {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 1fr 2fr;
     width: 90%;
     height: 10%;
-    justify-content: space-around;
     align-items: center;
     margin-top: 0.8rem;
     margin-bottom: 0.8rem;
@@ -110,6 +127,10 @@ nav {
 .MainPage-Invoice-Card:hover {
     padding: 0.3rem;
     transition: 0.2s;
+}
+
+.MainPage-Invoice-Card h2 {
+    margin-left: 10%;
 }
 
 
@@ -365,6 +386,10 @@ nav {
     height: 100%;
     max-width: 80vh;
     width: 100%;
+}
+
+.backButton {
+    margin-bottom: 3%;
 }
 
 .InvoicePage-TopContainer {
