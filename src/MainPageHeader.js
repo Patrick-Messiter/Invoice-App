@@ -9,24 +9,24 @@ function MainPageHeader (props) {
 
     return (
         <header className='MainPage-Header-Container'>
-            <div>
+            <div className='MainPage-Title-Container'>
                 <h1>Invoices</h1>
-                <p>There are currently {props.invoiceList.length} invoices</p>
+                <p>{props.invoiceList.length} invoices</p>
             </div>
-            <div>
+            <div className='MainPage-Filter-Container'>
                 <p>Filter By:</p>
                 <CustomSelect 
                     itemList = {["Greater than $100", "Less than $100", "Paid", "Outstanding", "Overdue", "None"]}
-                    default={"Choose a filter to filter by:"}
+                    default={"Choose a filter:"}
                     selectedOption = {props.filteredListChoice}
                     setSelectedOption = {props.setFilteredListChoice}
                 />
             </div>
-            <div>
+            <div className='MainPage-Sort-Container'>
                 <p>Sort By:</p>
                 <CustomSelect 
                     itemList = {["Total Value", "Status", "Due Date"]}
-                    default={"Choose a filter to sort by:"}
+                    default={"Choose a filter:"}
                     selectedOption = {props.sortedListChoice}
                     setSelectedOption = {props.setSortedListChoice}
                 />
