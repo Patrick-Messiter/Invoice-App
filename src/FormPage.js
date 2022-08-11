@@ -10,7 +10,7 @@ const animation = {
     key: "form",
     initial: {x:"-100%"},
     animate: {x: 0, scale: 1},
-    transition: {duration: 1},
+    transition: {duration: 0.5},
     exit: {x:"-100%", scale: 0},
 }
 
