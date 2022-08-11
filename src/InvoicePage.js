@@ -60,7 +60,7 @@ function InvoicePage (props) {
             <div className='InvoicePage-MainContainer glassMinor'>
                 <div className='InvoicePage-BillFromContainer'>
                     <div>
-                        <h4>{props.invoice.id}</h4>
+                        <h4>#{props.invoice.id}</h4>
                         <div className='InvoicePage-Dates'>
                             <p>Invoice Date: <span>{`${props.invoice.invoiceDate.day} ${props.invoice.invoiceDate.monthName} ${props.invoice.invoiceDate.year}`}</span></p>
                             <p>Payment Terms: <span>{props.invoice.paymentTerms}</span></p>

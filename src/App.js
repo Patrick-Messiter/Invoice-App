@@ -4,7 +4,6 @@ import './App.css';
 import {Navbar} from './Navbar';
 import {MainPage} from './Mainpage';
 import {InvoicePage} from './InvoicePage';
-import { filterProps } from 'framer-motion';
 
 function App() {
   // Invoice data section
