@@ -5,6 +5,7 @@ import {generateRandomId, generateCurrentDate} from './GlobalFunctions'
 import { Calendar } from './Calendar'
 import {FormItem} from './FormItem'
 import { CustomSelect } from './CustomSelect'
+import { FormWarning } from './FormWarning'
 
 const animation = {
     key: "form",
@@ -29,6 +30,10 @@ function FormPage (props) {
 
     //State for handling addition or subtraction of items in form
     const [itemList, setItemList] = React.useState([])
+
+    //State for confirming form validation before handling submit
+    const [formValidation, setFormValidation] = React.useState(false)
+    const [formWarningToggle, setFormWarningToggle] = React.useState(false)
 
 
     //State change if editing a current invoice rather than creating a new invoice
@@ -76,22 +81,6 @@ function FormPage (props) {
             })
         }
         return total
-    }
-    
-    function handleSubmit(event) {
-        event.preventDefault()
-
-        props.setInvoiceList(prevList => {
-            return prevList.filter(currentItem => currentItem.id !== formData.id)
-        })
-
-        props.setInvoiceList(prevList => {
-            return [
-                ...prevList,
-                formData
-            ]
-        })
-        toggleForm()
     }
 
     // Section for handling item components in form
@@ -143,6 +132,44 @@ function FormPage (props) {
             />
         )
     })
+
+    //Form Submission section
+
+    function formValidationCheck () {
+        console.log(formData)
+        if (formData.fromAddress && formData.fromCity &&
+            formData.fromCountry && formData.fromPost &&
+            formData.toName && formData.toEmail){
+                setFormValidation(true)
+        }
+        console.log(formValidation)
+    }
+
+    React.useEffect(()=> {
+        formValidationCheck()
+    }, [formData])
+    
+    function handleSubmit(event) {
+        event.preventDefault()
+
+        if (!formValidation) {
+            setFormWarningToggle(true)
+        }
+
+        if (formValidation) {
+            props.setInvoiceList(prevList => {
+                return prevList.filter(currentItem => currentItem.id !== formData.id)
+            })
+    
+            props.setInvoiceList(prevList => {
+                return [
+                    ...prevList,
+                    formData
+                ]
+            })
+            toggleForm()
+        }
+    }
 
     return (
     <motion.div {...animation} className='FormPage-Wrapper glassMinor'>
@@ -264,7 +291,7 @@ function FormPage (props) {
                             />
                         </label>
                     </div>
-                    <div className='FormPage-CustomSelect-Container FormPage-Input'>
+                    <div className='FormPage-CustomSelect-Container'>
                         <label>Payment Terms
                             <CustomSelect 
                                 itemList = {["Net 7 days", "Net 14 days", "Net 30 days", "Net 90 days"]}
@@ -302,6 +329,9 @@ function FormPage (props) {
                 </div>
             </form>
         </div>
+        {formWarningToggle && <FormWarning
+            setFormWarningToggle = {setFormWarningToggle}
+        />}
     </motion.div>
     )
 }

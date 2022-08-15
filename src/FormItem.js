@@ -25,7 +25,7 @@ function FormItem (props) {
                 value={props.item.itemPrice}
             />
             <p>{props.item.itemQty && props.item.itemPrice ? props.item.itemQty * props.item.itemPrice : 0}</p>
-            <p onClick={props.deleteItem}>&#128465;</p>
+            <p className='Trash-Icon' onClick={props.deleteItem}>&#128465;</p>
         </div>
     )
 }

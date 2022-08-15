@@ -79,9 +79,9 @@ function Calendar (props) {
             {toggleCalendar &&
             <div className='Calendar-Bottom-Container glassMinor'>
                 <div className='Calendar-Bottom-Header'>
-                    <p onClick={(e) => {earlierMonth(); decrementYear(e)}}>left</p>
+                    <p className='Arrow-Font' onClick={(e) => {earlierMonth(); decrementYear(e)}}>&#8592;</p>
                     {calendarDates.months[props.invoiceDate.month].name}
-                    <p onClick={(e) => {laterMonth(); incrementYear(e)}}>right</p>
+                    <p className='Arrow-Font' onClick={(e) => {laterMonth(); incrementYear(e)}}>&#8594;</p>
                 </div>
                 <div className='Calendar-Bottom-ListContainer'>
                     <ul className='Calendar-Bottom-List'>

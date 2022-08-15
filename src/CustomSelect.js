@@ -13,7 +13,7 @@ function CustomSelect (props) {
     })
     
     return (
-        <div onClick={toggleOptions} className='CustomSelect-Wrapper glassMinor'>
+        <div onClick={toggleOptions} className='CustomSelect-Wrapper glassMinor FormPage-Input'>
             <div ref={props.customSelectRef}>
                 {props.selectedOption ? props.selectedOption : props.default}
             </div>

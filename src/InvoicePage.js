@@ -64,6 +64,7 @@ function InvoicePage (props) {
                         <div className='InvoicePage-Dates'>
                             <p>Invoice Date: <span>{`${props.invoice.invoiceDate.day} ${props.invoice.invoiceDate.monthName} ${props.invoice.invoiceDate.year}`}</span></p>
                             <p>Payment Terms: <span>{props.invoice.paymentTerms}</span></p>
+                            <p>Project Description: <span>{props.invoice.project}</span></p>
                         </div>
                     </div>
                     <div>

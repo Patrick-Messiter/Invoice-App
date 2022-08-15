@@ -26,9 +26,7 @@ function App() {
     let data = localStorage.getItem("invoiceList")
     data = JSON.parse(data)
     if (data) {
-      console.log(data)
       setInvoiceList(data)
-      console.log(invoiceList)
     }
   }, [])
 
