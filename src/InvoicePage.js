@@ -8,6 +8,20 @@ import {FormPage} from './FormPage';
 
 function InvoicePage (props) {
 
+    const [windowWidth, setWindowWidth] = React.useState(window.innerWidth)
+
+    React.useEffect(() => {
+        function manageWidth() {
+            setWindowWidth(window.innerWidth)
+        }
+
+        window.addEventListener("resize", manageWidth)
+
+        return () => {
+            window.removeEventListener("resize", manageWidth)
+        }
+    }, [])
+
     function toggleMain () {
         props.setInvoiceSectionToggle(false)
         props.setMainSectionToggle(true)
@@ -43,7 +57,7 @@ function InvoicePage (props) {
     }
 
     const mapInvoiceItems = props.invoice.items.map(currentItem => {
-        return <InvoicePageItemCard key={currentItem.id} item = {currentItem}/>
+        return <InvoicePageItemCard key={currentItem.id} item = {currentItem} windowWidth={windowWidth}/>
     })
 
     return (
@@ -58,9 +72,9 @@ function InvoicePage (props) {
                 </div>
             </div>
             <div className='InvoicePage-MainContainer glassMinor'>
-                <div className='InvoicePage-BillFromContainer'>
+                <h4>#{props.invoice.id}</h4>    
+                <div className='InvoicePage-BillFromContainer'>  
                     <div>
-                        <h4>#{props.invoice.id}</h4>
                         <div className='InvoicePage-Dates'>
                             <p>Invoice Date: <span>{`${props.invoice.invoiceDate.day} ${props.invoice.invoiceDate.monthName} ${props.invoice.invoiceDate.year}`}</span></p>
                             <p>Payment Terms: <span>{props.invoice.paymentTerms}</span></p>
@@ -87,21 +101,22 @@ function InvoicePage (props) {
                     </div>
                     <div className='InvoicePage-ClientEmail'>
                         <p>Sent To</p>
-                        <h4>{props.invoice.toEmail}</h4>
+                        <span>{props.invoice.toEmail}</span>
                     </div>
                 </div>
                 <div className='InvoicePage-InvoiceContainer glassMinor'>
+                    {(windowWidth > 500) && 
                     <div className='InvoicePage-InvoiceHeadings'>
                         <p>Item Name</p>
                         <p>Qty.</p>
                         <p>Price</p>
                         <p>Total</p>
-                    </div>
+                    </div>}
                     <div className='InvoicePage-InvoiceList'>
                         {mapInvoiceItems}
                     </div>
                     <div className='InvoicePage-InvoiceTotal'>
-                        <p>Total Outstanding:</p>
+                        {windowWidth > 500 ? <p>Total: </p> : <p>Total Outstanding:</p>}
                         <span>{`$${props.invoice.paymentTotal}`}</span>
                     </div>
                 </div>
