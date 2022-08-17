@@ -330,7 +330,7 @@ function FormPage (props) {
             </form>
         </div>
         {formWarningToggle && <FormWarning
-            setFormWarningToggle = {setFormWarningToggle}
+        setFormWarningToggle = {setFormWarningToggle}
         />}
     </motion.div>
     )

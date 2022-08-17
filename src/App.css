@@ -402,9 +402,8 @@ nav button {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: 140%;
     width: 100%;
-    padding-bottom: 26%;
     z-index: 5;
     position: absolute;
     top: 0;
@@ -420,7 +419,6 @@ nav button {
     width: 60%;
     border-radius: 0.8rem;
     padding: 3%;
-    margin-top: 13%;
 }
 
 .FormWarning-Container h4 {
@@ -673,10 +671,7 @@ nav button {
     }
 
     .FormWarning-Wrapper {
-        padding-bottom: 58%;
-    }
-    .FormWarning-Container {
-        margin-top: 29%;
+        height: 140%;
     }
 }
 
@@ -722,10 +717,7 @@ nav button {
     }
 
     .FormWarning-Wrapper {
-        padding-bottom: 54%;
-    }
-    .FormWarning-Container {
-        margin-top: 27%;
+        height: 110%;
     }
 
     .InvoicePage-Container {
@@ -808,6 +800,10 @@ nav button {
     .FormPage-Bottom {
         width: 100%;
         margin-left: 0;
+    }
+
+    .FormWarning-Wrapper {
+        height: 150%;
     }
 
     .InvoicePage-Container {
