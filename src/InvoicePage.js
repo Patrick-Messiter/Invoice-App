@@ -68,7 +68,7 @@ function InvoicePage (props) {
                 <div className='InvoicePage-TopContainer-ButtonsContainer'>
                     <button onClick={toggleForm} className='Button PositiveResponse glassMinor'>Edit</button>
                     <button onClick={()=>{deleteInvoice();toggleMain()}} className='Button NegativeResponse glassMinor'>Delete</button>
-                    <button onClick={payInvoice} className='Button PositiveResponse glassMinor'>Mark as Paid</button>
+                    <button onClick={payInvoice} className='Button PositiveResponse glassMinor PaidButton'>Mark as Paid</button>
                 </div>
             </div>
             <div className='InvoicePage-MainContainer glassMinor'>

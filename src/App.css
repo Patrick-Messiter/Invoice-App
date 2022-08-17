@@ -639,21 +639,6 @@ nav button {
         padding: 3%;
     }
 
-    .FormPage-Wrapper {
-        min-width: 80vw;
-        min-height: 80vh;
-        left: 10%;
-        top: 10%;
-    }
-
-    .FormWarning-Wrapper {
-        padding-bottom: 58%;
-    }
-    .FormWarning-Container {
-        margin-top: 29%;
-    }
-
-
     .Invoice-Card-Id {
         grid-area: 1 / 1 / span 1 / span 1;
         margin: 0;
@@ -678,6 +663,20 @@ nav button {
     .Invoice-Card-Status {
         grid-area: 3 / 2 / span 1 / span 1;
         margin: 0;
+    }
+    
+    .FormPage-Wrapper {
+        min-width: 80vw;
+        min-height: 80vh;
+        left: 10%;
+        top: 10%;
+    }
+
+    .FormWarning-Wrapper {
+        padding-bottom: 58%;
+    }
+    .FormWarning-Container {
+        margin-top: 29%;
     }
 }
 
@@ -705,7 +704,6 @@ nav button {
 
     .MainPage-Filter-Container {
         grid-area: 2 / 1 / span 1 / span 1;
-        margin-left: 3%;
     }
 
     .MainPage-Sort-Container {
@@ -713,8 +711,7 @@ nav button {
     }
 
     .MainPage-Header-Container button {
-        grid-area: 3 / 1 / span 1 / span 3;
-        margin: 0 2%;
+        grid-area: 3 / 1 / span 1 / span 2;
     }
 
     .FormPage-Wrapper {
@@ -758,22 +755,103 @@ nav button {
 
 @media only screen and (max-width: 500px) {
 
+    .MainPage-Container {
+        min-width: 90%;
+    }
+
+    .MainPage-Header-Container {
+        max-height: 15vh;
+    }
+
+    .MainPage-Invoice-Container {
+        max-height: 55vh;
+        overflow: scroll;
+        justify-content: start;
+    }
+
+    .MainPage-Invoice-Card {
+        grid-template-rows: repeat(6, 1fr);
+    }
+
+    .Invoice-Card-Id {
+        grid-area: 1 / 1 / span 2 / span 1;
+    }
+
+    .Invoice-Card-Date {
+        grid-area: 3 / 1 / span 2 / span 1;
+    }
+
+    .Invoice-Card-Name {
+        grid-area: 1 / 2 / span 3 / span 1;
+    }
+
+    .Invoice-Card-Price {
+        grid-area: 5 / 1 / span 2 / span 1;
+    }
+
+    .Invoice-Card-Status {
+        grid-area: 4 / 2 / span 3 / span 1;
+    }
+
+    .FormPage-Wrapper {
+        min-width: 90vw;
+        min-height: 80vh;
+        max-height: 80vh;
+        left: 5%;
+    }
+
+    .FormPage-Container {
+        width: 95%;
+        max-width: 95%;
+    }
+
+    .FormPage-Bottom {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .InvoicePage-Container {
+        max-width: 90%;
+        min-height: 90vh;
+        max-height: 90vh;
+    }
+
     .InvoicePage-TopContainer {
-        min-height: 25vh;
+        min-height: 15vh;
+        width: 95%;
+        padding: 2.5%;
     }
 
     .InvoicePage-TopContainer-ButtonsContainer {
-        flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         grid-area: 2 / 1 / span 1 / span 2;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        column-gap: 5%;
         width: 100%;
-        height: 20vh;
+        height: 12vh;
+    }
+
+    .PaidButton {
+        grid-area: 2 / 1 / span 1 / span 2;
+    }
+
+    .InvoicePage-MainContainer {
+        padding: 0;
+        grid-template-rows: 0.3fr 1fr 1fr 2fr;
+        row-gap: 2%;
+        min-height: 60vh;
+        max-height:60vh;
+        overflow: scroll
     }
 
     .InvoicePage-BillFromContainer {
         flex-direction: column-reverse;
         align-items: flex-start;
         justify-content: space-evenly;
+        width: 90%;
+        margin-left: 5%;
     }
 
     .InvoicePage-BillFromContainer ul {
@@ -783,17 +861,35 @@ nav button {
 
     .InvoicePage-BillToContainer {
         display: grid;
-        grid-template-rows: 2fr 1fr;
+        grid-template-rows: 1.5fr 1fr;
         justify-content: flex-start;
         align-items: center;
+        width: 90%;
+        margin-left: 5%;
+    }
+
+    .InvoicePage-BillToContainer p {
+        margin: 0.3rem 0;
     }
 
     .InvoicePage-InvoiceContainer {
         grid-template-rows: 3fr 1fr;
+        padding: 0;
+        width: 100%;
+        max-width: 100%;
+        min-height: 100%;
+        max-height: 100%;
+        border-radius: 0 0 0.3rem 0.3rem;
+        align-items: normal;
     }
 
     .InvoicePage-InvoiceList {
         grid-row: 1 / 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 95%;
+        margin-left: 2.5%;
     }
 
     .InvoicePage-InvoiceListItem {
@@ -807,6 +903,7 @@ nav button {
 
     .InvoicePage-InvoiceTotal {
         grid-row: 2 / 2;
+        border-radius: 0 0 0.3rem 0.3rem;
     }
 
     .InvoicePage-InvoiceTotal span {
