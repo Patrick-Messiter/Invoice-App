@@ -73,7 +73,7 @@ function Calendar (props) {
     return (
         <div className='Calendar-Wrapper'>
             <div className='Calendar-Top FormPage-Input glassMinor'onClick={toggleContainer}>
-                <p>{`${props.invoiceDate.day} ${props.invoiceDate.monthName} ${props.invoiceDate.year}`}</p>
+                <p className='Calendar-Date'>{`${props.invoiceDate.day} ${props.invoiceDate.monthName} ${props.invoiceDate.year}`}</p>
                 <p>&#128197;</p>
             </div>
             {toggleCalendar &&

@@ -306,6 +306,7 @@ function FormPage (props) {
                         <input
                             className='FormPage-Input glassMinor'
                             type="text"
+                            maxLength={50}
                             onChange={handleChange}
                             name="project"
                             value={formData.project}
@@ -328,10 +329,10 @@ function FormPage (props) {
                     <button className='Button PositiveResponse glassMinor'>Complete</button>
                 </div>
             </form>
+            {formWarningToggle && <FormWarning
+            setFormWarningToggle = {setFormWarningToggle}
+            />}
         </div>
-        {formWarningToggle && <FormWarning
-        setFormWarningToggle = {setFormWarningToggle}
-        />}
     </motion.div>
     )
 }

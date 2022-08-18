@@ -5,6 +5,7 @@ function FormItem (props) {
         <div className='FormItem-Container'>
             <input
                 type="text"
+                maxLength={20}
                 className='FormPage-Input glassMinor'
                 onChange={props.alterItem}
                 name= "itemName"
@@ -12,6 +13,8 @@ function FormItem (props) {
             />
             <input
                 type="number"
+                max="999"
+                defaultValue={0}
                 className='FormPage-Input glassMinor'
                 onChange={props.alterItem}
                 name= "itemQty"
@@ -19,6 +22,9 @@ function FormItem (props) {
             />
             <input
                 type="number"
+                step="0.1"
+                max="999999"
+                defaultValue={0}
                 className='FormPage-Input glassMinor'
                 onChange={props.alterItem}
                 name= "itemPrice"
