@@ -1,4 +1,5 @@
 import React from 'react'
+import { formatNumber } from './GlobalFunctions'
 
 function InvoicePageItemCard (props) {
     return (
@@ -13,9 +14,9 @@ function InvoicePageItemCard (props) {
         <div className='InvoicePage-InvoiceListItem'>
             <div>
                 <p><span>{props.item.itemName}</span></p>
-                <p>{props.item.itemQty} x {`$${props.item.itemPrice}`}</p>
+                <p>{props.item.itemQty} x {`$${formatNumber(props.item.itemPrice)}`}</p>
             </div>
-            <p><span>{`$${props.item.itemQty * props.item.itemPrice}`}</span></p>
+            <p><span>{`$${formatNumber(props.item.itemQty * props.item.itemPrice)}`}</span></p>
         </div>}
         </>
     )

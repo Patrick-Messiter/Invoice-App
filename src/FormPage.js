@@ -1,7 +1,7 @@
 import React from 'react'
 import {motion} from "framer-motion"
 
-import {generateRandomId, generateCurrentDate} from './GlobalFunctions'
+import {generateRandomId, generateCurrentDate, formatNumber} from './GlobalFunctions'
 import { Calendar } from './Calendar'
 import {FormItem} from './FormItem'
 import { CustomSelect } from './CustomSelect'
@@ -21,6 +21,21 @@ function FormPage (props) {
     const [formData, setFormData] = React.useState(
         {id: generateRandomId()}
     )
+
+    //Window width state 
+    const [windowWidth, setWindowWidth] = React.useState(window.innerWidth)
+
+    React.useEffect(() => {
+        function manageWidth() {
+            setWindowWidth(window.innerWidth)
+        }
+
+        window.addEventListener("resize", manageWidth)
+
+        return () => {
+            window.removeEventListener("resize", manageWidth)
+        }
+    }, [])
 
     //State for Payment Option custom select
     const [paymentTerms, setPaymentTerms] = React.useState()
@@ -80,7 +95,7 @@ function FormPage (props) {
                 total += Number(currentItem.itemQty) * Number(currentItem.itemPrice)
             })
         }
-        return total
+        return formatNumber(total)
     }
 
     // Section for handling item components in form
@@ -128,7 +143,8 @@ function FormPage (props) {
                 id = {currentItem.id}
                 key = {currentItem.id}
                 alterItem = {(event) => alterItem(currentItem.id, event)}
-                deleteItem = {() => deleteItem(currentItem.id)} 
+                deleteItem = {() => deleteItem(currentItem.id)}
+                windowWidth = {windowWidth} 
             />
         )
     })
@@ -288,6 +304,7 @@ function FormPage (props) {
                             <Calendar 
                                 invoiceDate = {invoiceDate}
                                 setInvoiceDate = {setInvoiceDate}
+                                windowWidth = {windowWidth}
                             />
                         </label>
                     </div>
@@ -315,12 +332,13 @@ function FormPage (props) {
                 </div>
                 <h4>Item List</h4>
                 <div className='FormPage-ItemContainer'>
+                    {windowWidth > 500 && 
                     <div className='FormPage-Item-LabelContainer'>
                         <label>Item Name</label>
                         <label>Qty.</label>
                         <label>Price</label>
                         <label>Total</label>
-                    </div>
+                    </div>}
                     {mappedItems}
                     <button type='button' className='FormPage-ItemContainer-Button glassMinor PositiveResponse' onClick={addFormItem}>Add New Item</button>
                 </div>
